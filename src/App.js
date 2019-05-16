@@ -2,8 +2,8 @@ import React from "react";
 import DatePicker from "react-date-picker";
 import CardList from "./components/CardList";
 import SearchBox from "./components/SearchBox";
-import './App.css'
-const apiKey = "IoNgBtPcB2BAFBogGs0w6VxskM9amKDP";
+import { fetchBooks, fetchBooksByDate } from "./services"
+import "./App.css";
 
 class App extends React.Component {
   state = {
@@ -13,48 +13,20 @@ class App extends React.Component {
   };
 
   componentDidMount() {
-    this.fetchBooks(this.state.date);
+    fetchBooks(this.state.date).then(data => {
+      this.setState({
+        books: data.results.books
+      });
+    });
   }
 
-  fetchBooks() {
-    fetch(
-      `https://api.nytimes.com/svc/books/v3/lists/current/hardcover-fiction.json?api-key=${apiKey}`
-    )
-      .then(response => response.json())
-      .then(data =>
-        this.setState({
-          books: data.results.books
-        })
-      )
-      .catch(console.log);
-  }
-
-  fetchBooksByDate(date) {
-    const dateString = this.dateToString(date);
-    fetch(
-      `https://api.nytimes.com/svc/books/v3/lists/${dateString}/hardcover-fiction.json?api-key=${apiKey}`
-    )
-      .then(response => response.json())
-      .then(data =>
-        this.setState({
-          books: data.results.books
-        })
-      )
-      .catch(console.log);
-  }
-
-  dateToString(date) {
-    const year = date.getFullYear();
-    // increment month by one because getMonth() starts from zero
-    const month =
-      date.getMonth() < 10 ? "0" + (date.getMonth() + 1) : date.getMonth() + 1;
-    const day = date.getDate() < 10 ? "0" + date.getDate() : date.getDate();
-    return `${year}-${month}-${day}`;
-  }
-
-  onDateChange = date => {
-    this.setState({ date });
-    this.fetchBooksByDate(date);
+  onDateChange = newDate => {
+    this.setState({ date: newDate });
+    fetchBooksByDate(newDate).then(data =>
+      this.setState({
+        books: data.results.books
+      })
+    );
   };
 
   onSearchChange = event => {
@@ -65,9 +37,7 @@ class App extends React.Component {
     const search = this.state.searchfield.toLowerCase();
     const filteredBooks = this.state.books.filter(book => {
       return (
-        book.title
-          .toLowerCase()
-          .includes(search) ||
+        book.title.toLowerCase().includes(search) ||
         book.author.toLowerCase().includes(search)
       );
     });

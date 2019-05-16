@@ -53,7 +53,7 @@ class Card extends React.Component {
                 ) : null}
                 <b>Weeks on list:</b> {weeks_on_list} <br />
                 <b>Publisher:</b> {publisher} <br />
-                <b>Isbn13:</b> {primary_isbn13} <br />
+                <b>ISBN:</b> {primary_isbn13} <br />
                 <br />
                 <a href={amazon_product_url}>Get it on Amazon</a>
               </div>
