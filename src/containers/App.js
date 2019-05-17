@@ -1,16 +1,29 @@
 import React from "react";
+import { connect } from "react-redux";
 import DatePicker from "react-date-picker";
-import CardList from "./components/CardList";
-import SearchBox from "./components/SearchBox";
-import { fetchBooks, fetchBooksByDate } from "./services"
+import CardList from "../components/CardList";
+import SearchBox from "../components/SearchBox";
+import { fetchBooks, fetchBooksByDate } from "../common/services";
 import "./App.css";
 
+import { setSearchField } from "../actions";
+
+const mapStateToProps = state => ({
+  searchField: state.searchField
+});
+
+const mapDispatchToProps = dispatch => ({
+  onSearchChange: event => dispatch(setSearchField(event.target.value))
+});
+
 class App extends React.Component {
-  state = {
-    date: new Date(),
-    books: [],
-    searchfield: ""
-  };
+  constructor() {
+    super();
+    this.state = {
+      date: new Date(),
+      books: []
+    };
+  }
 
   componentDidMount() {
     fetchBooks(this.state.date).then(data => {
@@ -29,12 +42,8 @@ class App extends React.Component {
     );
   };
 
-  onSearchChange = event => {
-    this.setState({ searchfield: event.target.value });
-  };
-
   render() {
-    const search = this.state.searchfield.toLowerCase();
+    const search = this.props.searchField.toLowerCase();
     const filteredBooks = this.state.books.filter(book => {
       return (
         book.title.toLowerCase().includes(search) ||
@@ -45,7 +54,7 @@ class App extends React.Component {
       <div className="tc mb5">
         <h1 className="f-headline mv3">Booktropolis</h1>
         <div className="flex justify-center pv3">
-          <SearchBox searchChange={this.onSearchChange} />
+          <SearchBox searchChange={this.props.onSearchChange} />
           <DatePicker
             className="br3 ba b--black bw1 mh2"
             onChange={this.onDateChange}
@@ -62,4 +71,7 @@ class App extends React.Component {
   }
 }
 
-export default App;
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(App);

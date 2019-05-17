@@ -7,7 +7,9 @@
     "react-card-flip": "^0.7.1",
     "react-date-picker": "^7.5.1",
     "react-dom": "^16.8.6",
+    "react-redux": "^7.0.3",
     "react-scripts": "3.0.1",
+    "redux": "^4.0.1",
     "tachyons": "^4.11.1"
   },
   "scripts": {
@@ -30,5 +32,8 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "redux-logger": "^3.0.6"
   }
 }

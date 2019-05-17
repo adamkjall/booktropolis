@@ -30,16 +30,16 @@ class Card extends React.Component {
     } = this.props.book;
     console.log();
     return (
-      <div className="br3 ba b--black-10 mw5 ma2 shadow-5 grow">
+      <div className="br3 ba b--black-10 mw5 ma2 shadow-5 grow" onClick={this.handleClick}>
         <ReactCardFlip isFlipped={this.state.isFlipped}>
-          <div key="front" onClick={this.handleClick}>
+          <div key="front" >
             <img className="br3 br--top" src={book_image} alt="book cover" />
             <div className="pa2">
               <h3 className="mv0">{"#" + rank + " " + title}</h3>
             </div>
           </div>
 
-          <div className="br3 br--top" key="back" onClick={this.handleClick}>
+          <div className="br3 br--top" key="back">
             <div className="pa2">
               <h3 className="mv0">{"#" + rank + " " + title}</h3>
               <h4 className="mv1">By {author}</h4>

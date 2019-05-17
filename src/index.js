@@ -1,10 +1,19 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import './index.css';
-import App from './App';
-import 'tachyons';
+import React from "react";
+import ReactDOM from "react-dom";
+import { Provider } from "react-redux";
+import { createStore, applyMiddleware } from "redux";
+import { createLogger } from "redux-logger";
+import "./index.css";
+import App from "./containers/App";
+import { searchBooks } from "./reducers";
+import "tachyons";
 
+const logger = createLogger();
+const store = createStore(searchBooks, applyMiddleware(logger));
 
-ReactDOM.render(<App />, document.getElementById('root'));
-
-
+ReactDOM.render(
+  <Provider store={store}>
+    <App />
+  </Provider>,
+  document.getElementById("root")
+);
