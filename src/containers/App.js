@@ -3,7 +3,11 @@ import { connect } from "react-redux";
 import DatePicker from "react-date-picker";
 import CardList from "../components/CardList";
 import SearchBox from "../components/SearchBox";
-import { fetchBooks, fetchBooksByDate } from "../common/services";
+import {
+  fetchBooks,
+  fetchBooksByDate,
+  searchForBook
+} from "../common/services";
 import "./App.css";
 
 import { setSearchField } from "../actions";
@@ -42,21 +46,30 @@ class App extends React.Component {
     );
   };
 
+  handleSearch = () => {
+    searchForBook(this.props.searchField.toLowerCase()).then(books =>
+      this.setState({
+        books: books
+      })
+    );
+  };
+
   render() {
-    const search = this.props.searchField.toLowerCase();
+    /*const search = this.props.searchField.toLowerCase();
     const filteredBooks = this.state.books.filter(book => {
       return (
         book.title.toLowerCase().includes(search) ||
         book.author.toLowerCase().includes(search)
-      );
-    });
+      ); 
+    }); */
     return (
-      <div className="tc mb5">
+      <div className="tc m5">
         <h1 className="f-headline mv3">Booktropolis</h1>
-        <div className="flex justify-center pv3">
-          <SearchBox searchChange={this.props.onSearchChange} />
+        <div className="flex flex-wrap justify-center pv3">
+          <SearchBox className="ma2" searchChange={this.props.onSearchChange} />
+          <button onClick={this.handleSearch}>Search</button>
           <DatePicker
-            className="br3 ba b--black bw1 mh2"
+            className="br3 ba b--black bw1 ma2"
             onChange={this.onDateChange}
             value={this.state.date}
             format=" d / M / y "
@@ -65,7 +78,7 @@ class App extends React.Component {
             required={true}
           />
         </div>
-        <CardList books={filteredBooks} />
+        <CardList books={this.state.books} />
       </div>
     );
   }

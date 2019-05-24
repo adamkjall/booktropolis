@@ -28,25 +28,27 @@ class Card extends React.Component {
       primary_isbn13,
       amazon_product_url
     } = this.props.book;
-    console.log();
     return (
-      <div className="br3 ba b--black-10 mw5 ma2 shadow-5 grow" onClick={this.handleClick}>
+      <div
+        className="br3 ba b--black-10 w-40 w-30-m w-20-l ma2 shadow-5 grow"
+        onClick={this.handleClick}
+      >
         <ReactCardFlip isFlipped={this.state.isFlipped}>
-          <div key="front" >
-            <img className="br3 br--top" src={book_image} alt="book cover" />
+          <div key="front">
+            <img className="br3 br--top w-100" src={book_image} alt="book cover" />
             <div className="pa2">
-              <h3 className="mv0">{"#" + rank + " " + title}</h3>
+              <h3 className="mv0">{(rank && "#" + rank) + " " + title}</h3>
             </div>
           </div>
 
           <div className="br3 br--top" key="back">
             <div className="pa2">
-              <h3 className="mv0">{"#" + rank + " " + title}</h3>
+              <h3 className="mv0">{rank && "#" + rank + " " + title}</h3>
               <h4 className="mv1">By {author}</h4>
               <p>{description}</p>
               <hr />
               <div className="tl">
-                {rank_last_week ? (
+                {rank_last_week && rank_last_week ? (
                   <div>
                     <b>Rank last week</b>: {rank_last_week}
                   </div>
