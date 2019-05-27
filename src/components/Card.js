@@ -37,18 +37,18 @@ class Card extends React.Component {
           <div key="front">
             <img className="br3 br--top w-100" src={book_image} alt="book cover" />
             <div className="pa2">
-              <h3 className="mv0">{(rank && "#" + rank) + " " + title}</h3>
+              <h3 className="mv0">{rank && "#" + rank + " "}{title}</h3>
             </div>
           </div>
 
           <div className="br3 br--top" key="back">
             <div className="pa2">
-              <h3 className="mv0">{rank && "#" + rank + " " + title}</h3>
+              <h3 className="mv0">{rank && "#" + rank + " "}{title}</h3>
               <h4 className="mv1">By {author}</h4>
               <p>{description}</p>
               <hr />
               <div className="tl">
-                {rank_last_week && rank_last_week ? (
+                {rank_last_week ? (
                   <div>
                     <b>Rank last week</b>: {rank_last_week}
                   </div>
