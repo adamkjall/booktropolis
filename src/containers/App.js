@@ -4,8 +4,8 @@ import DatePicker from "react-date-picker";
 import CardList from "../components/CardList";
 import SearchBox from "../components/SearchBox";
 import {
-  fetchBooks,
-  fetchBooksByDate,
+  fetchCurrentBestSellers,
+  fetchBestSellersByDate,
   searchForBook
 } from "../common/services";
 import "./App.css";
@@ -30,7 +30,7 @@ class App extends React.Component {
   }
 
   componentDidMount() {
-    fetchBooks(this.state.date).then(data => {
+    fetchCurrentBestSellers(this.state.date).then(data => {
       this.setState({
         books: data.results.books
       });
@@ -39,7 +39,7 @@ class App extends React.Component {
 
   onDateChange = newDate => {
     this.setState({ date: newDate });
-    fetchBooksByDate(newDate).then(data =>
+    fetchBestSellersByDate(newDate).then(data =>
       this.setState({
         books: data.results.books
       })
