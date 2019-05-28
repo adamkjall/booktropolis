@@ -6,7 +6,9 @@ const nyt_apiKey = "IoNgBtPcB2BAFBogGs0w6VxskM9amKDP";
 export const fetchCurrentBestSellers = () => {
   return fetch(
     `https://api.nytimes.com/svc/books/v3/lists/current/hardcover-fiction.json?api-key=${nyt_apiKey}`
-  ).then(response => response.json());
+  )
+    .then(response => response.json())
+    .then(data => data.results.books);
 };
 
 export const fetchBestSellersByDate = date => {
@@ -15,7 +17,9 @@ export const fetchBestSellersByDate = date => {
   const dateString = dateToString(date);
   return fetch(
     `https://api.nytimes.com/svc/books/v3/lists/${dateString}/hardcover-fiction.json?api-key=${nyt_apiKey}`
-  ).then(response => response.json());
+  )
+    .then(response => response.json())
+    .then(data => data.results.books);
 };
 
 const dateToString = date => {

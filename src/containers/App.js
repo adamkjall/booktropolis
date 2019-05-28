@@ -4,46 +4,51 @@ import DatePicker from "react-date-picker";
 import CardList from "../components/CardList";
 import SearchBox from "../components/SearchBox";
 import {
-  fetchCurrentBestSellers,
-  fetchBestSellersByDate,
+
   searchForBook
 } from "../common/services";
 import "./App.css";
 
-import { setSearchField } from "../actions";
+import { setSearchField, setDate, requestCurrentBestSellers, requestBestSellersByDate } from "../actions";
 
 const mapStateToProps = state => ({
-  searchField: state.searchField
+  searchField: state.searchBooks.searchField,
+  date: state.changeDate.date,
+  books: state.requestBooks.books,
+  isPending: state.requestBooks.isPending,
+  error: state.requestBooks.error
 });
 
 const mapDispatchToProps = dispatch => ({
-  onSearchChange: event => dispatch(setSearchField(event.target.value))
+  onSearchChange: event => dispatch(setSearchField(event.target.value)),
+  onSetDate: date => dispatch(setDate(date)),
+  onRequestCurrentBestSellers: () => dispatch(requestCurrentBestSellers()),
+  onRequestBestSellersByDate: (date) => dispatch(requestBestSellersByDate(date))
 });
 
 class App extends React.Component {
   constructor() {
     super();
     this.state = {
-      date: new Date(),
-      books: []
+      date: new Date()
     };
   }
 
   componentDidMount() {
-    fetchCurrentBestSellers(this.state.date).then(data => {
-      this.setState({
-        books: data.results.books
-      });
-    });
+    this.props.onRequestCurrentBestSellers();
   }
 
   onDateChange = newDate => {
+    this.props.onSetDate(newDate)
+    this.props.onRequestBestSellersByDate(newDate);
+    /*
     this.setState({ date: newDate });
     fetchBestSellersByDate(newDate).then(data =>
       this.setState({
         books: data.results.books
       })
     );
+    */
   };
 
   handleSearch = () => {
@@ -57,28 +62,31 @@ class App extends React.Component {
   render() {
     /*const search = this.props.searchField.toLowerCase();
     const filteredBooks = this.state.books.filter(book => {
-      return (
+      return ( 
         book.title.toLowerCase().includes(search) ||
         book.author.toLowerCase().includes(search)
       ); 
     }); */
-    return (
+    const { onSearchChange, onRequestBestSellerByDate, books, isPending, date } = this.props;
+    return isPending ? (
+      <h1>Loading</h1>
+    ) : (
       <div className="tc m5">
         <h1 className="f-headline mv3">Booktropolis</h1>
         <div className="flex flex-wrap justify-center pv3">
-          <SearchBox className="ma2" searchChange={this.props.onSearchChange} />
+          <SearchBox className="ma2" searchChange={onSearchChange} />
           <button onClick={this.handleSearch}>Search</button>
           <DatePicker
             className="br3 ba b--black bw1 ma2"
             onChange={this.onDateChange}
-            value={this.state.date}
+            value={date}
             format=" d / M / y "
             minDetail="decade"
             maxDate={new Date()}
             required={true}
           />
         </div>
-        <CardList books={this.state.books} />
+        <CardList books={books} />
       </div>
     );
   }
