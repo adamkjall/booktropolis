@@ -3,7 +3,8 @@ import {
   CHANGE_DATE,
   REQUEST_BOOKS_PENDING,
   REQUEST_BOOKS_SUCCESS,
-  REQUEST_BOOKS_FAILED
+  REQUEST_BOOKS_FAILED,
+  FLIP_CARD
 } from "./constants";
 
 const initialStateSearch = {
@@ -35,6 +36,7 @@ export const changeDate = (state = initialStateDate, action = {}) => {
 const initialStateBooks = {
   isPending: false,
   books: [],
+  isFlipped: [],
   error: ""
 };
 
@@ -46,6 +48,31 @@ export const requestBooks = (state = initialStateBooks, action = {}) => {
       return { ...state, isPending: false, books: action.payload };
     case REQUEST_BOOKS_FAILED:
       return { ...state, isPending: false, error: action.payload };
+    default:
+      return state;
+  }
+};
+
+const initialStateFlippedCards = {
+  isFlipped: [],
+  prevCardId: -1
+};
+
+export const updateFlippedCards = (
+  state = initialStateFlippedCards,
+  action = {}
+) => {
+  switch (action.type) {
+    case FLIP_CARD:
+      const cardId = action.payload;
+      const newIsFlipped = state.isFlipped.slice();
+
+      newIsFlipped[cardId] = !newIsFlipped[cardId];
+
+      if (state.prevCardId !== -1 && cardId !== state.prevCardId) {
+        newIsFlipped[state.prevCardId] = !newIsFlipped[cardId];
+      }
+      return { ...state, isFlipped: newIsFlipped, prevCardId: cardId };
     default:
       return state;
   }

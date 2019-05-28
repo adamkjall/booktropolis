@@ -1,16 +1,17 @@
 import React from "react";
 import { connect } from "react-redux";
 import DatePicker from "react-date-picker";
-import CardList from "../components/CardList";
+import Card from "../components/Card";
 import SearchBox from "../components/SearchBox";
 import "./App.css";
 
 import {
   setSearchField,
-  setDate,
+  updateDate,
   requestCurrentBestSellers,
   requestBestSellersByDate,
-  requestBooksBySearch
+  requestBooksBySearch,
+  flipCard
 } from "../actions";
 
 const mapStateToProps = state => ({
@@ -18,15 +19,18 @@ const mapStateToProps = state => ({
   date: state.changeDate.date,
   books: state.requestBooks.books,
   isPending: state.requestBooks.isPending,
-  error: state.requestBooks.error
+  error: state.requestBooks.error,
+  isFlipped: state.updateFlippedCards.isFlipped,
+  
 });
 
 const mapDispatchToProps = dispatch => ({
   onSearchChange: event => dispatch(setSearchField(event.target.value)),
-  onSetDate: date => dispatch(setDate(date)),
+  onSetDate: date => dispatch(updateDate(date)),
   onRequestCurrentBestSellers: () => dispatch(requestCurrentBestSellers()),
   onRequestBestSellersByDate: date => dispatch(requestBestSellersByDate(date)),
-  onRequestBooksBySearch: search => dispatch(requestBooksBySearch(search))
+  onRequestBooksBySearch: search => dispatch(requestBooksBySearch(search)),
+  onCardFlip: id => dispatch(flipCard(id))
 });
 
 class App extends React.Component {
@@ -43,14 +47,10 @@ class App extends React.Component {
     this.props.onRequestBooksBySearch(this.props.searchField.toLowerCase());
   };
 
-  render() {
-    const {
-      onSearchChange,
-      books,
-      isPending,
-      date
-    } = this.props;
 
+
+  render() {
+    const { onSearchChange, onCardFlip, books, isPending, date, isFlipped } = this.props;
     return isPending ? (
       <h1>Loading</h1>
     ) : (
@@ -69,7 +69,19 @@ class App extends React.Component {
             required={true}
           />
         </div>
-        <CardList books={books} />
+        <div className="flex flex-wrap justify-center">
+          {books
+            ? books.map((book, i) => (
+                <Card
+                  key={i}
+                  id={i}
+                  isFlipped={isFlipped[i]}
+                  handleClick={onCardFlip}
+                  book={book}
+                />
+              ))
+            : null}
+        </div>
       </div>
     );
   }

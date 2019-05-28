@@ -3,7 +3,8 @@ import {
   CHANGE_DATE,
   REQUEST_BOOKS_PENDING,
   REQUEST_BOOKS_SUCCESS,
-  REQUEST_BOOKS_FAILED
+  REQUEST_BOOKS_FAILED,
+  FLIP_CARD
 } from "./constants";
 
 import {
@@ -17,7 +18,7 @@ export const setSearchField = text => ({
   payload: text
 });
 
-export const setDate = date => ({
+export const updateDate = date => ({
   type: CHANGE_DATE,
   payload: date
 });
@@ -42,3 +43,8 @@ export const requestBooksBySearch = search => dispatch => {
     .then(data => dispatch({ type: REQUEST_BOOKS_SUCCESS, payload: data }))
     .catch(error => dispatch({ type: REQUEST_BOOKS_FAILED, payload: error }));
 };
+
+export const flipCard = id => ({
+  type: FLIP_CARD,
+  payload: id
+});
