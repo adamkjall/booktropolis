@@ -34,6 +34,7 @@ const mapDispatchToProps = dispatch => ({
 });
 
 class App extends React.Component {
+  
   componentDidMount() {
     this.props.onRequestCurrentBestSellers();
   }
@@ -47,6 +48,12 @@ class App extends React.Component {
     this.props.onRequestBooksBySearch(this.props.searchField.toLowerCase());
   };
 
+  handleKeyPress = event => {
+    if (event.key === "Enter") {
+      console.log('hellooooo')
+      this.handleSearch();
+    }
+  }
 
 
   render() {
@@ -57,8 +64,8 @@ class App extends React.Component {
       <div className="tc m5">
         <h1 className="f-headline mv3">Booktropolis</h1>
         <div className="flex flex-wrap justify-center pv3">
-          <SearchBox className="ma2" searchChange={onSearchChange} />
-          <button onClick={this.handleSearch}>Search</button>
+          <SearchBox className="ma2" searchChange={onSearchChange} handleKeyPress={this.handleKeyPress} />
+          {/* <button onClick={this.handleSearch}>Search</button> */}
           <DatePicker
             className="br3 ba b--black bw1 ma2"
             onChange={this.onDateChange}

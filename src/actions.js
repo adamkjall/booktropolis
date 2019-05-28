@@ -4,7 +4,8 @@ import {
   REQUEST_BOOKS_PENDING,
   REQUEST_BOOKS_SUCCESS,
   REQUEST_BOOKS_FAILED,
-  FLIP_CARD
+  FLIP_CARD,
+  RESET_FLIPPED_CARDS,
 } from "./constants";
 
 import {
@@ -25,6 +26,7 @@ export const updateDate = date => ({
 
 export const requestCurrentBestSellers = () => dispatch => {
   dispatch({ type: REQUEST_BOOKS_PENDING });
+  dispatch({ type: RESET_FLIPPED_CARDS });
   fetchCurrentBestSellers()
     .then(data => dispatch({ type: REQUEST_BOOKS_SUCCESS, payload: data }))
     .catch(error => dispatch({ type: REQUEST_BOOKS_FAILED, payload: error }));
@@ -32,6 +34,7 @@ export const requestCurrentBestSellers = () => dispatch => {
 
 export const requestBestSellersByDate = date => dispatch => {
   dispatch({ type: REQUEST_BOOKS_PENDING });
+  dispatch({ type: RESET_FLIPPED_CARDS });
   fetchBestSellersByDate(date)
     .then(data => dispatch({ type: REQUEST_BOOKS_SUCCESS, payload: data }))
     .catch(error => dispatch({ type: REQUEST_BOOKS_FAILED, payload: error }));
@@ -39,6 +42,7 @@ export const requestBestSellersByDate = date => dispatch => {
 
 export const requestBooksBySearch = search => dispatch => {
   dispatch({ type: REQUEST_BOOKS_PENDING });
+  dispatch({ type: RESET_FLIPPED_CARDS });
   searchForBook(search)
     .then(data => dispatch({ type: REQUEST_BOOKS_SUCCESS, payload: data }))
     .catch(error => dispatch({ type: REQUEST_BOOKS_FAILED, payload: error }));

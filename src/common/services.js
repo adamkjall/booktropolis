@@ -37,8 +37,9 @@ const dateToString = date => {
 const google_apiKey = "AIzaSyB9wQyJ2N2x9z15nzvO5g-9o-eV_ZLkOkI";
 
 export const searchForBook = search => {
+  const maxResult = 20;
   return fetch(
-    `https://www.googleapis.com/books/v1/volumes?q=${search}&maxResults=40&key=${google_apiKey}`
+    `https://www.googleapis.com/books/v1/volumes?q=${search}&maxResults=${maxResult}&key=${google_apiKey}`
   )
     .then(response => response.json())
     .then(data =>

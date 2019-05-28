@@ -4,7 +4,8 @@ import {
   REQUEST_BOOKS_PENDING,
   REQUEST_BOOKS_SUCCESS,
   REQUEST_BOOKS_FAILED,
-  FLIP_CARD
+  FLIP_CARD,
+  RESET_FLIPPED_CARDS
 } from "./constants";
 
 const initialStateSearch = {
@@ -72,6 +73,8 @@ export const updateFlippedCards = (
         newIsFlipped[state.prevCardId] = !newIsFlipped[cardId];
       }
       return { ...state, isFlipped: newIsFlipped, prevCardId: cardId };
+    case RESET_FLIPPED_CARDS:
+      return { ...state, isFlipped: [], prevCardId: -1}
     default:
       return state;
   }
