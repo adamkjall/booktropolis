@@ -20,26 +20,25 @@ export const setSearchField = text => ({
 export const setDate = date => ({
   type: CHANGE_DATE,
   payload: date
-})
+});
 
 export const requestCurrentBestSellers = () => dispatch => {
   dispatch({ type: REQUEST_BOOKS_PENDING });
   fetchCurrentBestSellers()
-    .then(data =>
-      dispatch({ type: REQUEST_BOOKS_SUCCESS, payload: data })
-    )
-    .catch(error =>
-      dispatch({ type: REQUEST_BOOKS_FAILED, payload: error })
-    );
+    .then(data => dispatch({ type: REQUEST_BOOKS_SUCCESS, payload: data }))
+    .catch(error => dispatch({ type: REQUEST_BOOKS_FAILED, payload: error }));
 };
 
-export const requestBestSellersByDate = (date) => dispatch => {
+export const requestBestSellersByDate = date => dispatch => {
   dispatch({ type: REQUEST_BOOKS_PENDING });
   fetchBestSellersByDate(date)
-    .then(data =>
-      dispatch({ type: REQUEST_BOOKS_SUCCESS, payload: data })
-    )
-    .catch(error =>
-      dispatch({ type: REQUEST_BOOKS_FAILED, payload: error })
-    );
+    .then(data => dispatch({ type: REQUEST_BOOKS_SUCCESS, payload: data }))
+    .catch(error => dispatch({ type: REQUEST_BOOKS_FAILED, payload: error }));
+};
+
+export const requestBooksBySearch = search => dispatch => {
+  dispatch({ type: REQUEST_BOOKS_PENDING });
+  searchForBook(search)
+    .then(data => dispatch({ type: REQUEST_BOOKS_SUCCESS, payload: data }))
+    .catch(error => dispatch({ type: REQUEST_BOOKS_FAILED, payload: error }));
 };

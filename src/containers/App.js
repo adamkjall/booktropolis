@@ -3,13 +3,15 @@ import { connect } from "react-redux";
 import DatePicker from "react-date-picker";
 import CardList from "../components/CardList";
 import SearchBox from "../components/SearchBox";
-import {
-
-  searchForBook
-} from "../common/services";
 import "./App.css";
 
-import { setSearchField, setDate, requestCurrentBestSellers, requestBestSellersByDate } from "../actions";
+import {
+  setSearchField,
+  setDate,
+  requestCurrentBestSellers,
+  requestBestSellersByDate,
+  requestBooksBySearch
+} from "../actions";
 
 const mapStateToProps = state => ({
   searchField: state.searchBooks.searchField,
@@ -23,51 +25,32 @@ const mapDispatchToProps = dispatch => ({
   onSearchChange: event => dispatch(setSearchField(event.target.value)),
   onSetDate: date => dispatch(setDate(date)),
   onRequestCurrentBestSellers: () => dispatch(requestCurrentBestSellers()),
-  onRequestBestSellersByDate: (date) => dispatch(requestBestSellersByDate(date))
+  onRequestBestSellersByDate: date => dispatch(requestBestSellersByDate(date)),
+  onRequestBooksBySearch: search => dispatch(requestBooksBySearch(search))
 });
 
 class App extends React.Component {
-  constructor() {
-    super();
-    this.state = {
-      date: new Date()
-    };
-  }
-
   componentDidMount() {
     this.props.onRequestCurrentBestSellers();
   }
 
   onDateChange = newDate => {
-    this.props.onSetDate(newDate)
+    this.props.onSetDate(newDate);
     this.props.onRequestBestSellersByDate(newDate);
-    /*
-    this.setState({ date: newDate });
-    fetchBestSellersByDate(newDate).then(data =>
-      this.setState({
-        books: data.results.books
-      })
-    );
-    */
   };
 
   handleSearch = () => {
-    searchForBook(this.props.searchField.toLowerCase()).then(books =>
-      this.setState({
-        books: books
-      })
-    );
+    this.props.onRequestBooksBySearch(this.props.searchField.toLowerCase());
   };
 
   render() {
-    /*const search = this.props.searchField.toLowerCase();
-    const filteredBooks = this.state.books.filter(book => {
-      return ( 
-        book.title.toLowerCase().includes(search) ||
-        book.author.toLowerCase().includes(search)
-      ); 
-    }); */
-    const { onSearchChange, onRequestBestSellerByDate, books, isPending, date } = this.props;
+    const {
+      onSearchChange,
+      books,
+      isPending,
+      date
+    } = this.props;
+
     return isPending ? (
       <h1>Loading</h1>
     ) : (
