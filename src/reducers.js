@@ -36,7 +36,6 @@ export const changeDate = (state = initialStateDate, action = {}) => {
 const initialStateBooks = {
   isPending: false,
   books: [],
-  isFlipped: [],
   error: ""
 };
 
