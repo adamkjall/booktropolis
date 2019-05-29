@@ -16,7 +16,7 @@ class SearchBox extends React.Component {
       <input
         className="br3 ba b--black bw1 pa2 ma2 shadow"
         type="search"
-        placeholder=" Search for book"
+        placeholder=" Search for books"
         onChange={searchChange}
         onKeyPress={event => handleKeyPress(event)}
         ref={this.textInput}
