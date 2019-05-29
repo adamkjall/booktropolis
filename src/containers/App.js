@@ -3,7 +3,9 @@ import { connect } from "react-redux";
 import DatePicker from "react-date-picker";
 import Card from "../components/Card";
 import SearchBox from "../components/SearchBox";
+
 import "./App.css";
+import "bootstrap/dist/css/bootstrap.css";
 
 import {
   setSearchField,
@@ -20,8 +22,7 @@ const mapStateToProps = state => ({
   books: state.requestBooks.books,
   isPending: state.requestBooks.isPending,
   error: state.requestBooks.error,
-  isFlipped: state.updateFlippedCards.isFlipped,
-  
+  isFlipped: state.updateFlippedCards.isFlipped
 });
 
 const mapDispatchToProps = dispatch => ({
@@ -34,7 +35,12 @@ const mapDispatchToProps = dispatch => ({
 });
 
 class App extends React.Component {
-  
+  constructor() {
+    super();
+    this.state = {
+      inSearchMode: false
+    };
+  }
   componentDidMount() {
     this.props.onRequestCurrentBestSellers();
   }
@@ -50,44 +56,109 @@ class App extends React.Component {
 
   handleKeyPress = event => {
     if (event.key === "Enter") {
-      console.log('hellooooo')
+      console.log("hellooooo");
       this.handleSearch();
+      this.setState({ inSearchMode: true });
     }
+  };
+
+  resetStartPage = () => {
+    this.props.onSetDate(new Date());
+    this.props.onRequestCurrentBestSellers();
+    this.setState({ inSearchMode: false });
+  };
+
+  getWeekNumber(date) {
+    // Copy date so don't modify original
+    date = new Date(
+      Date.UTC(date.getFullYear(), date.getMonth(), date.getDate())
+    );
+    // Set to nearest Thursday: current date + 4 - current day number
+    // Make Sunday's day number 7
+    date.setUTCDate(date.getUTCDate() + 4 - (date.getUTCDay() || 7));
+    // Get first day of year
+    var yearStart = new Date(Date.UTC(date.getUTCFullYear(), 0, 1));
+    // Calculate full weeks to nearest Thursday
+    var weekNo = Math.ceil(((date - yearStart) / 86400000 + 1) / 7);
+    // Return array of year and week number
+    return [date.getUTCFullYear(), weekNo];
   }
 
-
   render() {
-    const { onSearchChange, onCardFlip, books, isPending, date, isFlipped } = this.props;
-    return isPending ? (
-      <h1>Loading</h1>
-    ) : (
-      <div className="tc m5">
-        <h1 className="f-headline mv3">Booktropolis</h1>
-        <div className="flex flex-wrap justify-center pv3">
-          <SearchBox className="ma2" searchChange={onSearchChange} handleKeyPress={this.handleKeyPress} />
-          {/* <button onClick={this.handleSearch}>Search</button> */}
-          <DatePicker
-            className="br3 ba b--black bw1 ma2"
-            onChange={this.onDateChange}
-            value={date}
-            format=" d / M / y "
-            minDetail="decade"
-            maxDate={new Date()}
-            required={true}
+    const {
+      onSearchChange,
+      onCardFlip,
+      books,
+      isPending,
+      date,
+      isFlipped
+    } = this.props;
+    const [year, week] = this.getWeekNumber(this.props.date);
+    return (
+      <div className="tc">
+        <h1
+          className=" w-100 f-headline mv3 pointer"
+          onClick={this.resetStartPage}
+        >
+          Booktropolis
+        </h1>
+        <div className="flex justify-center items-center">
+          <div className="mt3">
+            <a
+              className="f6 link ph3 pv2  dib white bg-green br3 shadow ma2 b pointer grow"
+              onClick={this.resetStartPage}
+            >
+              BEST SELLERS
+            </a>
+            <a className="f6 link dim ph3 pv2  dib white bg-moon-gray br3 shadow ma2 b pointer grow">
+              FAVORITES
+            </a>
+            <a className="f6 link ph3 pv2  dib white bg-dark-green br3 shadow ma2 b pointer grow">
+              REGISTER
+            </a>
+          </div>
+        </div>
+        <div>
+          <SearchBox
+            searchChange={onSearchChange}
+            handleKeyPress={this.handleKeyPress}
           />
         </div>
+
+        {!this.state.inSearchMode ? (
+          <div className="flex flex-wrap justify-center items-center">
+            <h2 className="f2">
+              New York Times Best Sellers week {week} {year}{" "}
+            </h2>
+            <div className="mt2">
+              <DatePicker
+                className="br3 pa1 ba b--black bw1 ml3"
+                onChange={this.onDateChange}
+                value={date}
+                format=" d / M / y "
+                minDetail="decade"
+                maxDate={new Date()}
+                required={true}
+              />
+            </div>
+          </div>
+        ) : <h2 className="f2">
+        Search results:
+      </h2>}
         <div className="flex flex-wrap justify-center">
-          {books
-            ? books.map((book, i) => (
-                <Card
-                  key={i}
-                  id={i}
-                  isFlipped={isFlipped[i]}
-                  handleClick={onCardFlip}
-                  book={book}
-                />
-              ))
-            : null}
+          {isPending ? (
+            <h1>Loading</h1>
+          ) : books ? (
+            books.map((book, i) => (
+              <Card
+                key={i}
+                id={i}
+                isFlipped={isFlipped[i]}
+                handleClick={onCardFlip}
+                book={book}
+              />
+            ))
+          ) : null}
         </div>
       </div>
     );

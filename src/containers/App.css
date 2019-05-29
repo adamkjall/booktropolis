@@ -1,11 +1,12 @@
 @font-face {
-  font-family: 'LEAFY';
+  font-family: "LEAFY";
   font-style: normal;
   font-weight: normal;
-  src: local('LEAFY'), url('leafy.woff') format('woff');
+  src: local("LEAFY"), url("leafy.woff") format("woff");
 }
 
-h1 {
-  font-family: 'LEAFY';
-  color: #363333;
+h1,
+h2 {
+  font-family: "LEAFY";
+  color: rgb(44, 36, 36);
 }
