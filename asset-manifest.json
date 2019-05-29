@@ -1,0 +1,18 @@
+{
+  "files": {
+    "main.css": "/adamkjall/booktropolis/static/css/main.121ae799.chunk.css",
+    "main.js": "/adamkjall/booktropolis/static/js/main.37bdb694.chunk.js",
+    "main.js.map": "/adamkjall/booktropolis/static/js/main.37bdb694.chunk.js.map",
+    "runtime~main.js": "/adamkjall/booktropolis/static/js/runtime~main.38344f68.js",
+    "runtime~main.js.map": "/adamkjall/booktropolis/static/js/runtime~main.38344f68.js.map",
+    "static/css/2.f6ec77e9.chunk.css": "/adamkjall/booktropolis/static/css/2.f6ec77e9.chunk.css",
+    "static/js/2.fcd1372f.chunk.js": "/adamkjall/booktropolis/static/js/2.fcd1372f.chunk.js",
+    "static/js/2.fcd1372f.chunk.js.map": "/adamkjall/booktropolis/static/js/2.fcd1372f.chunk.js.map",
+    "index.html": "/adamkjall/booktropolis/index.html",
+    "precache-manifest.200f5088a7dee2678322129225a5fdc7.js": "/adamkjall/booktropolis/precache-manifest.200f5088a7dee2678322129225a5fdc7.js",
+    "service-worker.js": "/adamkjall/booktropolis/service-worker.js",
+    "static/css/2.f6ec77e9.chunk.css.map": "/adamkjall/booktropolis/static/css/2.f6ec77e9.chunk.css.map",
+    "static/css/main.121ae799.chunk.css.map": "/adamkjall/booktropolis/static/css/main.121ae799.chunk.css.map",
+    "static/media/App.css": "/adamkjall/booktropolis/static/media/leafy.387e7e35.woff"
+  }
+}
