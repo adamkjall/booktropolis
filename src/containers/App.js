@@ -97,7 +97,7 @@ class App extends React.Component {
     return (
       <div className="tc ">
         <h1
-          className="f-headline-ns f-subheadline pointer mh3 mb4 mt2"
+          className="f-headline-ns f-subheadline pointer mh3 mb4-ns mb1 mt2-ns mt4"
           onClick={this.resetStartPage}
         >
           Booktropolis
