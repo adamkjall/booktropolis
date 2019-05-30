@@ -1,15 +1,15 @@
 {
   "files": {
     "main.css": "/booktropolis/static/css/main.f5989f51.chunk.css",
-    "main.js": "/booktropolis/static/js/main.f759cf84.chunk.js",
-    "main.js.map": "/booktropolis/static/js/main.f759cf84.chunk.js.map",
+    "main.js": "/booktropolis/static/js/main.dae07a85.chunk.js",
+    "main.js.map": "/booktropolis/static/js/main.dae07a85.chunk.js.map",
     "runtime~main.js": "/booktropolis/static/js/runtime~main.2cdfe600.js",
     "runtime~main.js.map": "/booktropolis/static/js/runtime~main.2cdfe600.js.map",
     "static/css/2.f6ec77e9.chunk.css": "/booktropolis/static/css/2.f6ec77e9.chunk.css",
     "static/js/2.fcd1372f.chunk.js": "/booktropolis/static/js/2.fcd1372f.chunk.js",
     "static/js/2.fcd1372f.chunk.js.map": "/booktropolis/static/js/2.fcd1372f.chunk.js.map",
     "index.html": "/booktropolis/index.html",
-    "precache-manifest.8e6a31da8ea33b17150f9548c4e0adc5.js": "/booktropolis/precache-manifest.8e6a31da8ea33b17150f9548c4e0adc5.js",
+    "precache-manifest.9465ed042062f39e32568b6202acff8a.js": "/booktropolis/precache-manifest.9465ed042062f39e32568b6202acff8a.js",
     "service-worker.js": "/booktropolis/service-worker.js",
     "static/css/2.f6ec77e9.chunk.css.map": "/booktropolis/static/css/2.f6ec77e9.chunk.css.map",
     "static/css/main.f5989f51.chunk.css.map": "/booktropolis/static/css/main.f5989f51.chunk.css.map",
