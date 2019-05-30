@@ -102,20 +102,20 @@ class App extends React.Component {
         >
           Booktropolis
         </h1>
-        <div className="flex justify-center mb3">
+        <div className="flex justify-center mb1">
           <div className="">
-            <a
-              className="f5-ns f7 link ph3 pv2 bg-green br3 shadow ma2 b pointer grow"
+            <button
+              className="b--none f5-ns f7 link ph3 pv2 bg-green br3 shadow ma2 b pointer grow"
               onClick={this.resetStartPage}
             >
               BEST SELLERS
-            </a>
-            <a className="f5-ns f7 link dim ph3 pv2 white bg-moon-gray br3 shadow ma2 b pointer grow">
+            </button>
+            <button className="b--none f5-ns f7 link dim ph3 pv2 white bg-moon-gray br3 shadow ma2 b pointer grow">
               FAVORITES
-            </a>
-            <a className="f5-ns f7 link ph3 pv2 bg-green br3 shadow ma2 b pointer grow">
+            </button>
+            <button className="b--none f5-ns f7 link ph3 pv2 bg-green br3 shadow ma2 b pointer grow">
               REGISTER
-            </a>
+            </button>
           </div>
         </div>
         <div className="justify-center">
@@ -126,13 +126,13 @@ class App extends React.Component {
         </div>
 
         {!this.state.inSearchMode ? (
-          <div className="flex flex-wrap justify-center mt4 mb3">
+          <div className="flex flex-wrap justify-center mt3 mb3 mh2">
             <h2 className="f2-ns f3">
               New York Times Best Sellers week {week} {year}{" "}
             </h2>
             <div className="mt2">
               <DatePicker
-                className="br3 pa1 ba b--black bw1 ml3"
+                className="br3 pa1-ns ba b--black bw1 ml3"
                 onChange={this.onDateChange}
                 value={date}
                 format=" d / M / y "
@@ -147,7 +147,7 @@ class App extends React.Component {
       </h2>}
         <div className="flex flex-wrap justify-center">
           {isPending ? (
-            <h1>Loading</h1>
+            <h1 className="f1-ns f2 mt4 mb3">Loading...</h1>
           ) : books ? (
             books.map((book, i) => (
               <Card
