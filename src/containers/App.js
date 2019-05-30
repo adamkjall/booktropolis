@@ -95,30 +95,30 @@ class App extends React.Component {
     } = this.props;
     const [year, week] = this.getWeekNumber(this.props.date);
     return (
-      <div className="tc">
+      <div className="tc ">
         <h1
-          className=" w-100 f-headline mv3 pointer"
+          className="f-headline-ns f1 pointer mh3 mb4 mt2"
           onClick={this.resetStartPage}
         >
           Booktropolis
         </h1>
-        <div className="flex justify-center items-center">
-          <div className="mt3">
+        <div className="flex justify-center mb3">
+          <div className="">
             <a
-              className="f6 link ph3 pv2  dib white bg-green br3 shadow ma2 b pointer grow"
+              className="f5-ns f7 link ph3 pv2 bg-green br3 shadow ma2 b pointer grow"
               onClick={this.resetStartPage}
             >
               BEST SELLERS
             </a>
-            <a className="f6 link dim ph3 pv2  dib white bg-moon-gray br3 shadow ma2 b pointer grow">
+            <a className="f5-ns f7 link dim ph3 pv2 white bg-moon-gray br3 shadow ma2 b pointer grow">
               FAVORITES
             </a>
-            <a className="f6 link ph3 pv2  dib white bg-dark-green br3 shadow ma2 b pointer grow">
+            <a className="f5-ns f7 link ph3 pv2 bg-green br3 shadow ma2 b pointer grow">
               REGISTER
             </a>
           </div>
         </div>
-        <div>
+        <div className="justify-center">
           <SearchBox
             searchChange={onSearchChange}
             handleKeyPress={this.handleKeyPress}
@@ -126,8 +126,8 @@ class App extends React.Component {
         </div>
 
         {!this.state.inSearchMode ? (
-          <div className="flex flex-wrap justify-center items-center">
-            <h2 className="f2">
+          <div className="flex flex-wrap justify-center mt4 mb3">
+            <h2 className="f2-ns f3">
               New York Times Best Sellers week {week} {year}{" "}
             </h2>
             <div className="mt2">
@@ -142,7 +142,7 @@ class App extends React.Component {
               />
             </div>
           </div>
-        ) : <h2 className="f2">
+        ) : <h2 className="f2-ns f3 mt4 mb3">
         Search results:
       </h2>}
         <div className="flex flex-wrap justify-center">
