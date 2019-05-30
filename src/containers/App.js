@@ -142,7 +142,7 @@ class App extends React.Component {
               />
             </div>
           </div>
-        ) : <h2 className="f2-ns f3 mt4 mb3">
+        ) : <h2 className="f2 mt3 mb2">
         Search results:
       </h2>}
         <div className="flex flex-wrap justify-center">
