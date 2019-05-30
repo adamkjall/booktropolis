@@ -97,7 +97,7 @@ class App extends React.Component {
     return (
       <div className="tc ">
         <h1
-          className="f-headline-ns f1 pointer mh3 mb4 mt2"
+          className="f-headline-ns f-subheadline pointer mh3 mb4 mt2"
           onClick={this.resetStartPage}
         >
           Booktropolis
@@ -110,7 +110,7 @@ class App extends React.Component {
             >
               BEST SELLERS
             </button>
-            <button className="b--none f5-ns f7 link dim ph3 pv2 white bg-moon-gray br3 shadow ma2 b pointer grow">
+            <button className="b--none f5-ns f7 link dim ph3 pv2 bg-moon-gray br3 shadow ma2 b pointer grow">
               FAVORITES
             </button>
             <button className="b--none f5-ns f7 link ph3 pv2 bg-green br3 shadow ma2 b pointer grow">

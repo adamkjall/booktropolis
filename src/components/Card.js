@@ -18,7 +18,7 @@ const Card = ({ id, isFlipped, handleClick, book }) => {
   return (
     <div
       id={id}
-      className="bg-near-white br3 ba b--black w-70 w-40-m w-20-l ma3 shadow-5 grow pointer"
+      className="bg-light-gray br3 ba b--black w-70 w-40-m w-20-l ma3 shadow-5 grow pointer"
       onClick={() => handleClick(id)}
     >
       <ReactCardFlip isFlipped={isFlipped}>
@@ -29,20 +29,20 @@ const Card = ({ id, isFlipped, handleClick, book }) => {
             alt="book cover"
           />
           <div className="pa2">
-            <h4 className="mv0">
-              {rank && "#" + rank + " "}
+            <h3 className="mv0">
+              <b>{rank && "#" + rank + " "}</b>
               {title}
-            </h4>
+            </h3>
           </div>
         </div>
 
         <div className="br3 br--top pa3" key="back">
           <div className="pa2">
-            <h4 className="mv0">
-              {rank && "#" + rank + " "}
+            <h3 className="mv0">
+              <b>{rank && "#" + rank + " "}</b>
               {title}
-            </h4>
-            <h5 className="mv1">By {author}</h5>
+            </h3>
+            <h5 className="mv1">By<b> {author}</b></h5>
             <hr />
             <p>{description}</p>
             <hr />
