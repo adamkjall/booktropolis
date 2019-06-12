@@ -3,9 +3,9 @@ import { connect } from "react-redux";
 import DatePicker from "react-date-picker";
 import Card from "../components/Card";
 import SearchBox from "../components/SearchBox";
+import MyNavBar from "../components/MyNavBar"
 
 import "./App.css";
-import "bootstrap/dist/css/bootstrap.css";
 
 import {
   setSearchField,
@@ -96,6 +96,10 @@ class App extends React.Component {
     const [year, week] = this.getWeekNumber(this.props.date);
     return (
       <div className="tc ">
+        <MyNavBar
+          searchChange={onSearchChange}
+          handleKeyPress={this.handleKeyPress}
+        />
         <h1
           className="f-headline-ns f-subheadline pointer mh3 mb4-ns mb1 mt2-ns mt4"
           onClick={this.resetStartPage}
@@ -126,19 +130,22 @@ class App extends React.Component {
         </div>
 
         {!this.state.inSearchMode ? (
-          <div className="flex flex-wrap justify-center mt3 mb3 mh2">
+          <div className="mt3 mb3 mh2">
             <h2 className="f2-ns f3">
               New York Times Best Sellers week {week} {year}{" "}
             </h2>
             <div className="mt2">
               <DatePicker
-                className="br3 pa1-ns ba b--black bw1 ml3"
+                style={{ color: "blue"}}
+                className="br3 pa1-ns ba b--black bw1"
                 onChange={this.onDateChange}
                 value={date}
-                format=" d / M / y "
+                format="d / M / y"
                 minDetail="decade"
                 maxDate={new Date()}
                 required={true}
+                clearIcon={null}
+                showLeadingZeros={false}
               />
             </div>
           </div>

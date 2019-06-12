@@ -29,20 +29,20 @@ const Card = ({ id, isFlipped, handleClick, book }) => {
             alt="book cover"
           />
           <div className="pa2">
-            <h3 className="mv0">
+            <h2 className="mv0">
               <b>{rank && "#" + rank + " "}</b>
               {title}
-            </h3>
+            </h2>
           </div>
         </div>
 
         <div className="br3 br--top pa3" key="back">
           <div className="pa2">
-            <h3 className="mv0">
+            <h1 className="mv0">
               <b>{rank && "#" + rank + " "}</b>
               {title}
-            </h3>
-            <h5 className="mv1">By<b> {author}</b></h5>
+            </h1>
+            <h3 className="mv1">By<b> {author}</b></h3>
             <hr />
             <p>{description}</p>
             <hr />

@@ -1,45 +1,58 @@
 import React from "react";
-import { Navbar, Nav, NavDropdown, Container, Row, Col } from "react-bootstrap";
+import { makeStyles } from "@material-ui/core/styles";
+import AppBar from "@material-ui/core/AppBar";
+import Toolbar from "@material-ui/core/Toolbar";
+import Typography from "@material-ui/core/Typography";
+import Button from "@material-ui/core/Button";
+import IconButton from "@material-ui/core/IconButton";
+import MenuIcon from "@material-ui/icons/Menu";
+import { Star, Book } from "@material-ui/icons";
 import SearchBox from "./SearchBox";
 
-const MyNavBar = () => {
+const useStyles = makeStyles(theme => ({
+  root: {
+    flexGrow: 1,
+    background: "linear-gradient(45deg, #FE6B8B 30%, #FF8E53 90%)"
+  },
+  menuButton: {
+    marginRight: theme.spacing(2)
+  },
+  title: {
+    flexGrow: 1
+  }
+}));
+
+export default function ButtonAppBar(props) {
+  const classes = useStyles();
+
   return (
-    <Navbar bg="dark" variant="dark" sticky="top" expand="lg">
-      <Navbar.Brand href="#home">
-        <h1 className="f-1 mt0">BOOKTROPOLIS</h1>
-      </Navbar.Brand>
-      <Navbar.Toggle className="ml-auto" aria-controls="basic-navbar-nav" />
+    <div className={classes.root}>
+      <AppBar position="static">
+        <Toolbar>
+          <IconButton
+            edge="start"
+            className={classes.menuButton}
+            color="inherit"
+            aria-label="Menu"
+          >
+            <MenuIcon />
+          </IconButton>
+          <Button color="inherit">
+            Best sellers <Book className="ml1" />{" "}
+          </Button>
+          <Button color="inherit">
+            Favorites <Star className="ml1" />{" "}
+          </Button>
+          <SearchBox 
+            searchChange={props.searchChange}
+            handleKeyPress={props.handleKeyPress}
+            /> 
 
-      <Navbar.Collapse id="basic-navbar-nav">
-      
-        <Nav className="ml-auto">
-        <Container fluid={true}>
-          <Row className="ml-auto">
-          <Nav.Link href="#home">Home</Nav.Link>
-          <Nav.Link href="#link">Link</Nav.Link>
-          <NavDropdown title="Dropdown" id="basic-nav-dropdown">
-            <NavDropdown.Item href="#action/3.1">Action</NavDropdown.Item>
-            <NavDropdown.Item href="#action/3.2">
-              Another action
-            </NavDropdown.Item>
-            <NavDropdown.Item href="#action/3.3">Something</NavDropdown.Item>
-            <NavDropdown.Divider />
-            <NavDropdown.Item href="#action/3.4">
-              Separated link
-            </NavDropdown.Item>
-          </NavDropdown>
-          <SearchBox />
-          </Row>
-          <Row className="ml-auto">
-          <Nav.Link href="#home">Login</Nav.Link>
-          <Nav.Link href="#link">Register</Nav.Link>
-          </Row>
-          </Container>
-        </Nav>
-  
-      </Navbar.Collapse>
-    </Navbar>
+          <Typography variant="h6" className={classes.title} />
+          <Button color="inherit">Register</Button>
+          <Button color="inherit">Login</Button>
+        </Toolbar>
+      </AppBar>
+    </div>
   );
-};
-
-export default MyNavBar;
+}
