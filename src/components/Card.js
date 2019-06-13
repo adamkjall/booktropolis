@@ -18,7 +18,7 @@ const Card = ({ id, isFlipped, handleClick, book }) => {
   return (
     <div
       id={id}
-      className="bg-light-gray br3 ba b--black w-70 w-40-m w-20-l ma3 shadow-5 grow pointer"
+      className="bg-light-gray br3 ba b--black ma2 w-70 w-40-m w5-l shadow-5 grow pointer"
       onClick={() => handleClick(id)}
     >
       <ReactCardFlip isFlipped={isFlipped}>
