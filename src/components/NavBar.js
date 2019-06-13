@@ -49,10 +49,10 @@ export default class Example extends React.Component {
                 />
               </NavItem>
               <NavItem>
-                <h1 className="f3-ns f4 ma0 ml3-ns ml2 mt2">Register</h1>
+                <h1 className="f3-ns f4 ma0 ml3-ns ml2 mt2 pointer">Register</h1>
               </NavItem>
               <NavItem>
-                <h1 className="f3-ns f4 ma0 ml3-ns ml2 mt2">Login</h1>
+                <h1 className="f3-ns f4 ma0 ml3-ns ml2 mt2 pointer">Login</h1>
               </NavItem>
             </Nav>
           </Collapse>
