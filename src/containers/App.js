@@ -61,7 +61,7 @@ class App extends React.Component {
     }
   };
 
-  resetStartPage = () => {
+  showBestSellers = () => {
     this.props.onSetDate(new Date());
     this.props.onRequestCurrentBestSellers();
     this.setState({ inSearchMode: false });
@@ -98,6 +98,7 @@ class App extends React.Component {
         <NavBar 
           searchChange={onSearchChange}
           handleKeyPress={this.handleKeyPress}
+          handleShowBestSellers={this.showBestSellers}
         />
         {/*<h1
           className="f-headline-ns f-subheadline pointer mh3 mb4-ns mb1 mt2-ns mt4"
@@ -165,7 +166,7 @@ class App extends React.Component {
                 book={book}
               />
             ))
-          ) : null}
+          ) : <h2 className="f3 mt3">No results found :(</h2>}
         </div>
       </div>
     );

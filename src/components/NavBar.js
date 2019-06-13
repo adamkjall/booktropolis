@@ -24,6 +24,7 @@ export default class Example extends React.Component {
     });
   }
   render() {
+    const { searchChange, handleKeyPress, handleShowBestSellers } = this.props;
     return (
       <div>
         <Navbar color="muted" light expand="lg">
@@ -33,7 +34,7 @@ export default class Example extends React.Component {
           <NavbarToggler className="mt3" onClick={this.toggle} />
           <Collapse isOpen={this.state.isOpen} navbar>
             <Nav className="ml-auto center w-auto" navbar>
-              <NavItem>
+              <NavItem onClick={handleShowBestSellers}>
                 <h1 className="f2-ns f3 ma0 bb bw1 pointer">Best sellers</h1>
               </NavItem>
               <NavItem className="mt-auto ml3-l mr2-l">
@@ -43,8 +44,8 @@ export default class Example extends React.Component {
             <Nav className="ml-auto center" navbar>
               <NavItem>
                 <SearchBox
-                  searchChange={this.props.searchChange}
-                  handleKeyPress={this.props.handleKeyPress}
+                  searchChange={searchChange}
+                  handleKeyPress={handleKeyPress}
                 />
               </NavItem>
               <NavItem>
