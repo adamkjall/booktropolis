@@ -2,10 +2,9 @@ import React from "react";
 import { connect } from "react-redux";
 import DatePicker from "react-date-picker";
 import Card from "../components/Card";
-import SearchBox from "../components/SearchBox";
+import NavBar from "../components/NavBar"
 
 import "./App.css";
-import "bootstrap/dist/css/bootstrap.css";
 
 import {
   setSearchField,
@@ -95,13 +94,18 @@ class App extends React.Component {
     } = this.props;
     const [year, week] = this.getWeekNumber(this.props.date);
     return (
-      <div className="tc ">
-        <h1
+      <div className="center tc w-90-ns">
+        <NavBar 
+          searchChange={onSearchChange}
+          handleKeyPress={this.handleKeyPress}
+        />
+        {/*<h1
           className="f-headline-ns f-subheadline pointer mh3 mb4-ns mb1 mt2-ns mt4"
           onClick={this.resetStartPage}
         >
           Booktropolis
         </h1>
+        
         <div className="flex justify-center mb1">
           <div className="">
             <button
@@ -124,21 +128,24 @@ class App extends React.Component {
             handleKeyPress={this.handleKeyPress}
           />
         </div>
-
+        */}
         {!this.state.inSearchMode ? (
-          <div className="flex flex-wrap justify-center mt3 mb3 mh2">
-            <h2 className="f2-ns f3">
+          <div className="mt3 mb3 mh2">
+            <h3 className="f2-ns f3">
               New York Times Best Sellers week {week} {year}{" "}
-            </h2>
+            </h3>
             <div className="mt2">
               <DatePicker
-                className="br3 pa1-ns ba b--black bw1 ml3"
+                style={{ color: "blue"}}
+                className="br3 pa1-ns ba b--black bw1"
                 onChange={this.onDateChange}
                 value={date}
-                format=" d / M / y "
+                format="d / M / y"
                 minDetail="decade"
                 maxDate={new Date()}
                 required={true}
+                clearIcon={null}
+                showLeadingZeros={false}
               />
             </div>
           </div>
