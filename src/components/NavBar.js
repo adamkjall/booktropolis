@@ -51,7 +51,7 @@ export default class Example extends React.Component {
                   handleKeyPress={handleKeyPress}
                 />
               </NavItem>
-              <NavItem>
+              <NavItem onClick={() => handleRouteChange('register')}>
                 <h1 className="f3-ns f4 ma0 ml3-ns ml2 mt2 pointer">Register</h1>
               </NavItem>
               <NavItem onClick={() => handleRouteChange('signIn')}>
