@@ -24,7 +24,7 @@ export default class Example extends React.Component {
     });
   }
   render() {
-    const { searchChange, handleKeyPress, handleShowBestSellers } = this.props;
+    const { searchChange, handleKeyPress, handleShowBestSellers, handleRouteChange } = this.props;
     return (
       <div>
         <Navbar color="muted" light expand="lg">
@@ -34,7 +34,10 @@ export default class Example extends React.Component {
           <NavbarToggler className="mt3" onClick={this.toggle} />
           <Collapse isOpen={this.state.isOpen} navbar>
             <Nav className="ml-auto center w-auto" navbar>
-              <NavItem onClick={handleShowBestSellers}>
+              <NavItem onClick={ () => {
+                handleShowBestSellers();
+                handleRouteChange('home')
+              }}>
                 <h1 className="f2-ns f3 ma0 bb bw1 pointer">Best sellers</h1>
               </NavItem>
               <NavItem className="mt-auto ml3-l mr2-l">
@@ -51,7 +54,7 @@ export default class Example extends React.Component {
               <NavItem>
                 <h1 className="f3-ns f4 ma0 ml3-ns ml2 mt2 pointer">Register</h1>
               </NavItem>
-              <NavItem>
+              <NavItem onClick={() => handleRouteChange('signIn')}>
                 <h1 className="f3-ns f4 ma0 ml3-ns ml2 mt2 pointer">Login</h1>
               </NavItem>
             </Nav>

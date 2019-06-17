@@ -2,8 +2,8 @@ import React from "react";
 import { connect } from "react-redux";
 import DatePicker from "react-date-picker";
 import Card from "../components/Card";
-import NavBar from "../components/NavBar"
-
+import NavBar from "../components/NavBar";
+import SignIn from "../components/SignIn";
 import "./App.css";
 
 import {
@@ -37,11 +37,17 @@ class App extends React.Component {
   constructor() {
     super();
     this.state = {
-      inSearchMode: false
+      inSearchMode: false,
+      route: "home",
+      isSignedIn: "false"
     };
   }
   componentDidMount() {
     this.props.onRequestCurrentBestSellers();
+  }
+
+  onRouteChange = route => {
+    this.setState({ route: route })
   }
 
   onDateChange = newDate => {
@@ -95,64 +101,41 @@ class App extends React.Component {
     const [year, week] = this.getWeekNumber(this.props.date);
     return (
       <div className="center tc w-90-ns">
-        <NavBar 
+        <NavBar
           searchChange={onSearchChange}
           handleKeyPress={this.handleKeyPress}
           handleShowBestSellers={this.showBestSellers}
+          handleRouteChange={this.onRouteChange}
         />
-        {/*<h1
-          className="f-headline-ns f-subheadline pointer mh3 mb4-ns mb1 mt2-ns mt4"
-          onClick={this.resetStartPage}
-        >
-          Booktropolis
-        </h1>
-        
-        <div className="flex justify-center mb1">
-          <div className="">
-            <button
-              className="b--none f5-ns f7 link ph3 pv2 bg-green br3 shadow ma2 b pointer grow"
-              onClick={this.resetStartPage}
-            >
-              BEST SELLERS
-            </button>
-            <button className="b--none f5-ns f7 link dim ph3 pv2 bg-moon-gray br3 shadow ma2 b pointer grow">
-              FAVORITES
-            </button>
-            <button className="b--none f5-ns f7 link ph3 pv2 bg-green br3 shadow ma2 b pointer grow">
-              REGISTER
-            </button>
-          </div>
-        </div>
-        <div className="justify-center">
-          <SearchBox
-            searchChange={onSearchChange}
-            handleKeyPress={this.handleKeyPress}
-          />
-        </div>
-        */}
-        {!this.state.inSearchMode ? (
-          <div className="mt3 mb3 mh2">
-            <h3 className="f2-ns f3">
-              New York Times Best Sellers week {week} {year}{" "}
-            </h3>
-            <div className="mt2">
-              <DatePicker
-                style={{ color: "blue"}}
-                className="br3 pa1-ns ba b--black bw1"
-                onChange={this.onDateChange}
-                value={date}
-                format="d / M / y"
-                minDetail="decade"
-                maxDate={new Date()}
-                required={true}
-                clearIcon={null}
-                showLeadingZeros={false}
-              />
+        {this.state.route === "home" ? (
+          !this.state.inSearchMode ? (
+            <div className="mt3 mb3 mh2">
+              <h3 className="f2-ns f3">
+                New York Times Best Sellers week {week} {year}{" "}
+              </h3>
+              <div className="mt2">
+                <DatePicker
+                  style={{ color: "blue" }}
+                  className="br3 pa1-ns ba b--black bw1"
+                  onChange={this.onDateChange}
+                  value={date}
+                  format="d / M / y"
+                  minDetail="decade"
+                  maxDate={new Date()}
+                  required={true}
+                  clearIcon={null}
+                  showLeadingZeros={false}
+                />
+              </div>
             </div>
-          </div>
-        ) : <h2 className="f2 mt3 mb2">
-        Search results:
-      </h2>}
+          ) : (
+            <h2 className="f2 mt3 mb2">Search results:</h2>
+          )
+        ) : this.state.route === "signIn" ? (
+          <SignIn />
+        ) : (
+          <h1>Register</h1>
+        )}
         <div className="flex flex-wrap justify-center">
           {isPending ? (
             <h1 className="f1-ns f2 mt4 mb3">Loading...</h1>
@@ -166,7 +149,9 @@ class App extends React.Component {
                 book={book}
               />
             ))
-          ) : <h2 className="f3 mt3">No results found :(</h2>}
+          ) : (
+            <h2 className="f3 mt3">No results found :(</h2>
+          )}
         </div>
       </div>
     );
