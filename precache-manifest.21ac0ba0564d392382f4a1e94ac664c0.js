@@ -1,6 +1,6 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "0dbf8874c36fe12cb905177dcf75d8da",
+    "revision": "b53438c46bb6bc813a646ae6cdf87f03",
     "url": "/booktropolis/index.html"
   },
   {
@@ -8,7 +8,7 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/booktropolis/static/css/2.597662a5.chunk.css"
   },
   {
-    "revision": "a445229f16b3ddca6aa1",
+    "revision": "d8877bbca0b3c1a68b85",
     "url": "/booktropolis/static/css/main.edccadfa.chunk.css"
   },
   {
@@ -16,8 +16,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/booktropolis/static/js/2.b154cf68.chunk.js"
   },
   {
-    "revision": "a445229f16b3ddca6aa1",
-    "url": "/booktropolis/static/js/main.7d36126a.chunk.js"
+    "revision": "d8877bbca0b3c1a68b85",
+    "url": "/booktropolis/static/js/main.dead964f.chunk.js"
   },
   {
     "revision": "c5ac6c1c8f0b5ab704b7",
