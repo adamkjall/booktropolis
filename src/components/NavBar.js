@@ -64,7 +64,7 @@ export default class Example extends React.Component {
                 <h1 className="f3-ns f4 ma0 mt1 mr3 pointer">Register</h1>
               </NavItem>
               <NavItem onClick={() => handleRouteChange("signIn")}>
-                <h1 className="f3-ns f4 ma0 mt1 pointer">Login</h1>
+                <h1 className="f3-ns f4 ma0 mt1 mr3 pointer">Login</h1>
               </NavItem>
             </Nav>
           </Collapse>
