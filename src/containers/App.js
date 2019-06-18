@@ -127,23 +127,6 @@ class App extends React.Component {
                   showLeadingZeros={false}
                 />
               </div>
-              <div className="flex flex-wrap justify-center">
-                {isPending ? (
-                  <h1 className="f1-ns f2 mt4 mb3">Loading...</h1>
-                ) : books ? (
-                  books.map((book, i) => (
-                    <Card
-                      key={i}
-                      id={i}
-                      isFlipped={isFlipped[i]}
-                      handleClick={onCardFlip}
-                      book={book}
-                    />
-                  ))
-                ) : (
-                  <h2 className="f3 mt3">No results found :(</h2>
-                )}
-              </div>
             </div>
           ) : (
             <h2 className="f2 mt3 mb2">Search results:</h2>
@@ -153,6 +136,25 @@ class App extends React.Component {
         ) : (
           <h1>Register</h1>
         )}
+        {this.state.route === "home" ? (
+          <div className="flex flex-wrap justify-center">
+            {isPending ? (
+              <h1 className="f1-ns f2 mt4 mb3">Loading...</h1>
+            ) : books ? (
+              books.map((book, i) => (
+                <Card
+                  key={i}
+                  id={i}
+                  isFlipped={isFlipped[i]}
+                  handleClick={onCardFlip}
+                  book={book}
+                />
+              ))
+            ) : (
+              <h2 className="f3 mt3">No results found :(</h2>
+            )}
+          </div>
+        ) : null}
       </div>
     );
   }

@@ -34,7 +34,7 @@ export default class Example extends React.Component {
       <div>
         <Navbar color="muted" light expand="lg">
           <NavbarBrand onClick={() => handleRouteChange("home")}>
-            <h1 className="f-subheadline-ns f1 ma0 pointer">Booktropolis</h1>
+            <h1 className="logo f-subheadline-ns f1 ma0 pointer">Booktropolis</h1>
           </NavbarBrand>
           <NavbarToggler className="mt3" onClick={this.toggle} />
           <Collapse isOpen={this.state.isOpen} navbar>

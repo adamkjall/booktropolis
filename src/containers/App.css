@@ -5,9 +5,17 @@
   src: local("LEAFY"), url("leafy.woff") format("woff");
 }
 
-
 h1,
-h2, h3, h4, h5 {
+h2,
+h3,
+h4,
+h5 {
   font-family: "LEAFY";
-  color: rgb(44, 36, 36);
+  color: rgb(32, 34, 30);
+}
+
+h1.logo {
+  background: -webkit-linear-gradient(    #000046 45%, #1cb5e0);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
