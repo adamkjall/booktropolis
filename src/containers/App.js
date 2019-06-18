@@ -47,8 +47,8 @@ class App extends React.Component {
   }
 
   onRouteChange = route => {
-    this.setState({ route: route })
-  }
+    this.setState({ route: route });
+  };
 
   onDateChange = newDate => {
     this.props.onSetDate(newDate);
@@ -113,7 +113,7 @@ class App extends React.Component {
               <h3 className="f2-ns f3">
                 New York Times Best Sellers week {week} {year}{" "}
               </h3>
-              <div className="mt2">
+              <div className="mv3">
                 <DatePicker
                   style={{ color: "blue" }}
                   className="br3 pa1-ns ba b--black bw1"
@@ -127,6 +127,23 @@ class App extends React.Component {
                   showLeadingZeros={false}
                 />
               </div>
+              <div className="flex flex-wrap justify-center">
+                {isPending ? (
+                  <h1 className="f1-ns f2 mt4 mb3">Loading...</h1>
+                ) : books ? (
+                  books.map((book, i) => (
+                    <Card
+                      key={i}
+                      id={i}
+                      isFlipped={isFlipped[i]}
+                      handleClick={onCardFlip}
+                      book={book}
+                    />
+                  ))
+                ) : (
+                  <h2 className="f3 mt3">No results found :(</h2>
+                )}
+              </div>
             </div>
           ) : (
             <h2 className="f2 mt3 mb2">Search results:</h2>
@@ -136,23 +153,6 @@ class App extends React.Component {
         ) : (
           <h1>Register</h1>
         )}
-        <div className="flex flex-wrap justify-center">
-          {isPending ? (
-            <h1 className="f1-ns f2 mt4 mb3">Loading...</h1>
-          ) : books ? (
-            books.map((book, i) => (
-              <Card
-                key={i}
-                id={i}
-                isFlipped={isFlipped[i]}
-                handleClick={onCardFlip}
-                book={book}
-              />
-            ))
-          ) : (
-            <h2 className="f3 mt3">No results found :(</h2>
-          )}
-        </div>
       </div>
     );
   }
